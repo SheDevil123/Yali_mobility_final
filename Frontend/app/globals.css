@@ -1,0 +1,221 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  /* Default Theme - Blue/Gray */
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --chart-1: 221.2 83.2% 53.3%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 221.2 83.2% 53.3%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* Purple Theme */
+  .theme-purple {
+    --primary: 267 75% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 270 50% 95%;
+    --secondary-foreground: 267 75% 30%;
+    --muted: 270 50% 95%;
+    --muted-foreground: 267 30% 50%;
+    --accent: 270 50% 95%;
+    --accent-foreground: 267 75% 30%;
+    --ring: 267 75% 55%;
+    --chart-1: 267 75% 55%;
+    --chart-2: 280 65% 60%;
+    --chart-3: 250 70% 50%;
+    --chart-4: 290 60% 70%;
+    --chart-5: 260 80% 65%;
+    --sidebar-primary: 267 75% 55%;
+  }
+
+  /* Green Theme */
+  .theme-green {
+    --primary: 142 72% 29%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 140 40% 94%;
+    --secondary-foreground: 142 72% 20%;
+    --muted: 140 40% 94%;
+    --muted-foreground: 142 30% 40%;
+    --accent: 140 40% 94%;
+    --accent-foreground: 142 72% 20%;
+    --ring: 142 72% 29%;
+    --chart-1: 142 72% 29%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 130 60% 40%;
+    --chart-4: 170 70% 35%;
+    --chart-5: 150 65% 50%;
+    --sidebar-primary: 142 72% 29%;
+  }
+
+  /* Amber Theme */
+  .theme-amber {
+    --primary: 38 92% 50%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 40 60% 96%;
+    --secondary-foreground: 38 92% 30%;
+    --muted: 40 60% 96%;
+    --muted-foreground: 38 40% 40%;
+    --accent: 40 60% 96%;
+    --accent-foreground: 38 92% 30%;
+    --ring: 38 92% 50%;
+    --chart-1: 38 92% 50%;
+    --chart-2: 30 80% 55%;
+    --chart-3: 45 90% 45%;
+    --chart-4: 20 85% 50%;
+    --chart-5: 50 95% 55%;
+    --sidebar-primary: 38 92% 50%;
+    --sidebar-primary-foreground: 0 0% 0%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 222.2 84% 4.9%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217.2 91.2% 59.8%;
+    --sidebar-primary-foreground: 222.2 47.4% 11.2%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 224.3 76.3% 48%;
+  }
+
+  /* Dark Purple Theme */
+  .dark.theme-purple {
+    --primary: 267 75% 65%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 267 30% 20%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 267 30% 20%;
+    --muted-foreground: 267 20% 70%;
+    --accent: 267 30% 20%;
+    --accent-foreground: 0 0% 98%;
+    --ring: 267 75% 65%;
+    --chart-1: 267 75% 65%;
+    --chart-2: 280 65% 70%;
+    --chart-3: 250 70% 60%;
+    --chart-4: 290 60% 75%;
+    --chart-5: 260 80% 70%;
+    --sidebar-primary: 267 75% 65%;
+  }
+
+  /* Dark Green Theme */
+  .dark.theme-green {
+    --primary: 142 72% 40%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 142 30% 20%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 142 30% 20%;
+    --muted-foreground: 142 20% 70%;
+    --accent: 142 30% 20%;
+    --accent-foreground: 0 0% 98%;
+    --ring: 142 72% 40%;
+    --chart-1: 142 72% 40%;
+    --chart-2: 160 60% 50%;
+    --chart-3: 130 60% 45%;
+    --chart-4: 170 70% 40%;
+    --chart-5: 150 65% 55%;
+    --sidebar-primary: 142 72% 40%;
+  }
+
+  /* Dark Amber Theme */
+  .dark.theme-amber {
+    --primary: 38 92% 60%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 38 30% 20%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 38 30% 20%;
+    --muted-foreground: 38 20% 70%;
+    --accent: 38 30% 20%;
+    --accent-foreground: 0 0% 98%;
+    --ring: 38 92% 60%;
+    --chart-1: 38 92% 60%;
+    --chart-2: 30 80% 65%;
+    --chart-3: 45 90% 55%;
+    --chart-4: 20 85% 60%;
+    --chart-5: 50 95% 65%;
+    --sidebar-primary: 38 92% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
