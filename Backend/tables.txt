@@ -56,6 +56,7 @@ CREATE TABLE customers (
     income_range VARCHAR(50),
     family_members INTEGER CHECK (family_members >= 0),
     weight NUMERIC(5,2) CHECK (weight > 0),
+    speed INTEGER,
     user_type VARCHAR(50),
     wheelchair_type VARCHAR(50),
     commute_range INTEGER CHECK (commute_range >= 0),

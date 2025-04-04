@@ -100,51 +100,85 @@ export default function ImportDataModal({ isOpen, onClose, onImport }: ImportDat
 
   const handleImport = () => {
     if (file) {
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        try {
-          let data: Persona[] = []
-
-          if (e.target?.result) {
-            // Parse CSV
-            const csvContent = e.target.result as string
-            const lines = csvContent.split("\n")
-            const headers = lines[0].split(",")
-
-            for (let i = 1; i < lines.length; i++) {
-              if (!lines[i].trim()) continue
-
-              const values = lines[i].split(",")
-              const persona: any = {
-                id: Date.now().toString() + i,
-                isFavorite: false,
-                status: "Active",
-                added: new Date().toISOString().split("T")[0],
-                type: selectedType,
-              }
-
-              headers.forEach((header, index) => {
-                const key = header.trim()
-                if (values[index]) {
-                  persona[key] = values[index].trim()
-                }
+      // Check file extension
+      const fileExtension = file.name.split('.').pop()?.toLowerCase();
+      
+      if (fileExtension === 'csv') {
+        // Handle CSV file
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          try {
+            if (e.target?.result) {
+              // Get the raw CSV content
+              const csvContent = e.target.result as string
+              
+              // Send the raw CSV data to backend
+              fetch('http://localhost:5500/import-data', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'text/csv',
+                  'X-File-Type': 'csv',
+                  'Type':selectedType
+                },
+                body: csvContent,
               })
-
-              data.push(persona as Persona)
+              .then(handleResponse)
+              .catch(handleError);
             }
+          } catch (error) {
+            console.error("Error importing file:", error)
           }
-
-          onImport(data)
-          resetForm()
-          onClose()
-        } catch (error) {
-          console.error("Error importing file:", error)
         }
+        reader.readAsText(file)
+      } 
+      else if (fileExtension === 'xlsx' || fileExtension === 'xls') {
+        // Handle Excel file - need to send as binary
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          try {
+            if (e.target?.result) {
+              // Send the binary Excel data to backend
+              fetch('http://localhost:5500/import-data', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/octet-stream',
+                  'X-File-Type': fileExtension,
+                  'Type':selectedType
+                },
+                body: e.target.result,
+              })
+              .then(handleResponse)
+              .catch(handleError);
+            }
+          } catch (error) {
+            console.error("Error importing file:", error)
+          }
+        }
+        reader.readAsArrayBuffer(file) // Read as binary for Excel files
       }
-
-      reader.readAsText(file)
+      else {
+        alert('Unsupported file format. Please upload a CSV or Excel file.');
+      }
     }
   }
+  
+  // Helper functions for handling response/error
+  const handleResponse = (response) => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json().then(responseData => {
+      console.log('Success:', responseData);
+      resetForm();
+      onClose();
+    });
+  }
+  
+  const handleError = (error) => {
+    console.error('Error sending data to server:', error);
+    alert('Error sending data to server: ' + error.message);
+  }
+
 
   const resetForm = () => {
     setFile(null)
