@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)
 DB_NAME = "postgres"
 DB_USER = "postgres"
-DB_PASSWORD = "nive1000"
+DB_PASSWORD = "password"
 DB_HOST = "localhost"  # Change if using a remote server
 DB_PORT = "5432" 
 conn = psycopg2.connect(
